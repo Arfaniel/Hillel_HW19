@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Services\Geo\GeoServiceInterface;
+use Vagrant\Geo\PackageGeoInterface\GeoServiceInterface;
 
 
 class GeoIpController extends Controller

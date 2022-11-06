@@ -4,6 +4,7 @@ namespace App\Services\Geo;
 
 
 use Illuminate\Support\Facades\Http;
+use Vagrant\Geo\PackageGeoInterface\GeoServiceInterface;
 
 class IpApiGeoService implements GeoServiceInterface
 {

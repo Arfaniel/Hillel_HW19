@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\Geo\GeoServiceInterface;
+use Vagrant\Geo\PackageGeoInterface\GeoServiceInterface;
 use App\Services\Geo\IpApiGeoService;
 use App\Services\Geo\MaxmindService;
 use App\Services\UserAgent\UserAgentServiceInterface;

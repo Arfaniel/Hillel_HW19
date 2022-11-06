@@ -4,6 +4,7 @@ namespace App\Services\Geo;
 
 use GeoIp2\Database\Reader;
 use GeoIp2\Model\Country;
+use Vagrant\Geo\PackageGeoInterface\GeoServiceInterface;
 
 class MaxmindService implements GeoServiceInterface
 {
