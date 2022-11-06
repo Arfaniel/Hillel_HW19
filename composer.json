@@ -6,13 +6,14 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
-        "geoip2/geoip2": "~2.0",
         "guzzlehttp/guzzle": "^7.5",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "whichbrowser/parser": "^2.1",
-        "vagrant/package-geo-interface": "*"
+        "thereisnospoon/package-geo-interface": "^1.0",
+        "thereisnospoon/package-geo-ip-api-geo-service" : "^1.0",
+        "vagrant/package-geo-maxmindservice" : "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
@@ -25,8 +26,8 @@
         "spatie/laravel-ignition": "^1.0"
     },
     "repositories": [{
-        "type": "path",
-        "url": "../package-geo-interface"
+        "type": "github",
+        "url": "https://github.com/Arfaniel/PackageGeoMaxmindservice"
     }],
     "autoload": {
         "psr-4": {
