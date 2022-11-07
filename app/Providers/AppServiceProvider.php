@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
 //            return new MaxmindService();
         });
         $this->app->singleton(UserAgentServiceInterface::class, function(){
-            return new WhichBrowserService($_SERVER['HTTP_USER_AGENT']);
+            return new WhichBrowserService();
         });
 
     }
