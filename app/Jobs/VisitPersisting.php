@@ -21,6 +21,7 @@ class VisitPersisting implements ShouldQueue
     public $continent_code;
     public $browser_name;
     public $os_name;
+
     /**
      * Create a new job instance.
      *
@@ -30,6 +31,7 @@ class VisitPersisting implements ShouldQueue
     {
         $geoReader->parse($ip);
         $userAgentReader->parse($_SERVER['HTTP_USER_AGENT']);
+        $this->ip = $ip;
         $this->country_code = $geoReader->getCountry() ?? 'UN';
         $this->continent_code = $geoReader->getIsoCode() ?? 'UN';
         $this->browser_name = $userAgentReader->getBrowser();
@@ -43,6 +45,7 @@ class VisitPersisting implements ShouldQueue
      */
     public function handle()
     {
+
         Visit::create([
             'ip' => $this->ip,
             'country_code' => $this->country_code,
