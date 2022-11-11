@@ -27,15 +27,14 @@ class VisitPersisting implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(string $ip, GeoServiceInterface $geoReader, UserAgentServiceInterface $userAgentReader)
+    public function __construct(string $ip, string $country_code, string $continent_code, string $browser_name, string $os_name)
     {
-        $geoReader->parse($ip);
-        $userAgentReader->parse($_SERVER['HTTP_USER_AGENT']);
+
         $this->ip = $ip;
-        $this->country_code = $geoReader->getCountry() ?? 'UN';
-        $this->continent_code = $geoReader->getIsoCode() ?? 'UN';
-        $this->browser_name = $userAgentReader->getBrowser();
-        $this->os_name = $userAgentReader->getOs();
+        $this->country_code = $country_code;
+        $this->continent_code = $continent_code;
+        $this->browser_name = $browser_name;
+        $this->os_name = $os_name;
     }
 
     /**
