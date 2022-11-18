@@ -29,7 +29,6 @@ class VisitFactory extends Factory
         $userAgentReader->parse(fake()->userAgent());
         $ip = fake()->ipv4;
         $geoReader->parse($ip);
-        print_r($geoReader->getIsoCode());
         return [
             'ip'=> $ip,
             'country_code'=> $geoReader->getCountry() ?? 'UN',
