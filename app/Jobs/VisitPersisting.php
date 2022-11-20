@@ -17,24 +17,21 @@ class VisitPersisting implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $ip;
-    public $country_code;
-    public $continent_code;
-    public $browser_name;
-    public $os_name;
+    public $userAgentString;
+    public $countryCode;
+    public $continentCode;
+    public $browserName;
+    public $osName;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(string $ip, string $country_code, string $continent_code, string $browser_name, string $os_name)
+    public function __construct(string $ip, string $userAgentString)
     {
-
         $this->ip = $ip;
-        $this->country_code = $country_code;
-        $this->continent_code = $continent_code;
-        $this->browser_name = $browser_name;
-        $this->os_name = $os_name;
+        $this->userAgentString = $userAgentString;
     }
 
     /**
@@ -42,14 +39,20 @@ class VisitPersisting implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(GeoServiceInterface $geoReader, UserAgentServiceInterface $userAgentReader)
     {
+        $geoReader->parse($this->ip);
+        $userAgentReader->parse($this->userAgentString);
+        $this->countryCode = $geoReader->getCountry() ?? 'UN';
+        $this->continentCode = $geoReader->getIsoCode() ?? 'UN';
+        $this->browserName = $userAgentReader->getBrowser();
+        $this->osName = $userAgentReader->getOs();
         Visit::create([
             'ip' => $this->ip,
-            'country_code' => $this->country_code,
-            'continent_code' => $this->continent_code,
-            'browser_name' => $this->browser_name,
-            'os_name' => $this->os_name
+            'country_code' => $this->countryCode,
+            'continent_code' => $this->continentCode,
+            'browser_name' => $this->browserName,
+            'os_name' => $this->osName
         ]);
     }
 }

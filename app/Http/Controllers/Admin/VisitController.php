@@ -4,27 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\VisitPersisting;
-use App\Models\Visit;
-use App\Services\UserAgent\UserAgentServiceInterface;
 use Faker\Factory;
-use Vagrant\Geo\PackageGeoInterface\GeoServiceInterface;
+
 
 class VisitController extends Controller
 {
-    public function index(GeoServiceInterface $geoReader, UserAgentServiceInterface $userAgentReader)
+    public function index()
     {
         $faker = Factory::create();
         $ip = $faker->ipv4();
         if ($ip == '127.0.0.1') {
             $ip = request()->server->get('HTTP_X_FORWARDED_FOR');
         }
-        $geoReader->parse($ip);
-        $userAgentReader->parse($faker->userAgent());
-        $country_code = $geoReader->getCountry() ?? 'UN';
-        $continent_code = $geoReader->getIsoCode() ?? 'UN';
-        $browser_name = $userAgentReader->getBrowser();
-        $os_name = $userAgentReader->getOs();
+        $userAgentString = $faker->userAgent();
 
-        VisitPersisting::dispatch($ip, $country_code, $continent_code, $browser_name, $os_name)->onQueue('parsing');
+        VisitPersisting::dispatch($ip, $userAgentString)->onQueue('parsing');
     }
 }
