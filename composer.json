@@ -5,15 +5,16 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.0.2",
+        "php": "^8.0.24",
+        "benjamincrozat/laravel-dropbox-driver": "^3.0",
         "guzzlehttp/guzzle": "^7.5",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "whichbrowser/parser": "^2.1",
         "thereisnospoon/package-geo-interface": "^1.0",
-        "thereisnospoon/package-geo-ip-api-geo-service" : "^1.0",
-        "vagrant/package-geo-maxmindservice" : "^1.0"
+        "thereisnospoon/package-geo-ip-api-geo-service": "^1.0",
+        "vagrant/package-geo-maxmindservice": "^1.0",
+        "whichbrowser/parser": "^2.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
